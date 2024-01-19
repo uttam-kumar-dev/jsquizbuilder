@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizBuilder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+    <div class='container-fluid d-flex text-white fixed-top' style='background: #6610f2;'>
+        <button style='background: rgba(0, 0, 0, 0); border: 1px solid #6610f2;'>
+            <div class="form-check form-switch">
+                <input onclick='sideBars(0)' class="form-check-input" role="switch"  type='checkbox'/>
+                
+            </div>
+        </button>
+        <div class='text-center' style='margin:0px auto;'>
+            <h1 class='text-center'>QuizBuilder</h1>
+        </div>
+        <button style='background: rgba(0, 0, 0, 0); border: 1px solid #6610f2;'>
+            <div class="form-check form-switch">
+                <input onclick='sideBars(1)' class="form-check-input" role="switch"  type='checkbox'/>
+                
+            </div>
+        </button>
+    </div>
+    <div class='wrapper' id='home'>
+        <!-- Creating a Sidebar for Controls -->
+        <div class='left' id='leftSidebar'>
+            <h4 class='h4 text-center'>Basic Style</h4>
+            <hr/>
+            <div style='display: flex;'>
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("bold",false,null);' title='Bold Text'><i class='fa fa-bold'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("italic",false,null);' title='Italic Text'><i class='fa fa-italic'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("underline",false,null);' title='Underline Text'><i class='fa fa-underline'></i></a>
+                </div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("strikethrough",false,null);' title='Strikethrough Text'><i class='fa fa-strikethrough'></i></a></div>
+            </div>
+
+            <div class='mt-1' style='display: flex; flex-wrap: wrap;'>
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='insertLink(prompt("Enter A Valid Url"))' title='Insert A Link'><i class='fa fa-link'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("insertUnorderedList",false,null);' title='Insert Unordered List'><i class='fa fa-list-ul'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("insertOrderedList",false,null);' title='Insert Ordered List'><i class='fa fa-list-ol'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false,"blockquote");' title='Add a BlockQuote'><i class='fa fa-quote-right'></i></a></div>
+            </div>
+
+
+            <div class='mt-1' style='display: flex; flex-wrap: wrap;'>
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("subscript",false,null);' title='Apply Subscript or Text Small'><i class='fa fa-subscript'></i></a>
+                </div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("superscript",false,null);' title='Set Power of a Text or Apply Superscript'><i class='fa fa-superscript'></i></a>
+                </div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("delete",false,null);' title='Delete Selected Text'><i class='fas fa-trash-alt'></i></a></div>
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' title='Apply Background Color on Selected Text'><label for='bgColor' style='cursor: pointer;'><i class='fa fa-paint-brush'></i></label><input id='bgColor' onchange='backgroundColorSet()' style='display: none;' type='color'></i></a></div>
+            </div>
+            <div class='mt-1' style='display: flex; flex-wrap: wrap;'>
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' title='Apply Text Color on Selected Text'><label for='textColor' style='cursor: pointer;'><i class='fa fa-paint-roller'></i></label><input id='textColor' onchange='textColorSet()' style='display: none;' type='color'></i></a></div>
+
+
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("insertHorizontalRule",false,"");' title='Insert a Line in Page'><i class='fa fa-minus'></i></a>
+                </div>
+                <div class='icon-style focusable'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("selectAll",false,"");' title='Select All Text'><i class='fa fa-check-square'></i></a>
+                </div>
+
+                <div class='icon-style focusable'>
+                    <a class='icon-click ' href='javascript:void(0)' onclick='clearEditor()' title='Clear Editor'><i class='fa fa-eraser'></i></a>
+                </div>
+            </div>
+            <hr/>
+            <h4 class='h4 text-center'>Text Align</h4>
+            <hr/>
+            <div style='display: flex;'>
+
+                <div class='icon-style focusable' tabindex='0'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("justifyLeft",false, null);'><i class='fa fa-align-left' title='Text left'></i></a></div>
+
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("justifyCenter",false,null);' title='Text Center'><i class='fa fa-align-center'></i></a>
+                </div>
+
+                <div class='icon-style focusable' tabindex='0'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("justifyRight",false,null);' title='Text Right'><i class='fa fa-align-right'></i></a></div>
+
+                <div class='icon-style focusable' tabindex='0'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("justifyFull",false,null);' title='Text justify'><i class='fa fa-align-justify'></i></a></div>
+
+            </div>
+            <hr/>
+            <h4 class='h4 text-center'>Headings</h4>
+            <hr/>
+            <div style='display: flex; flex-wrap: wrap;'>
+
+                <div class='icon-style focusable' tabindex='0'><a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false,"<h1>");' style='font-weight: bold;' title='Major Heading (H1)'>H1</a>
+                </div>
+
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<h2>");' style='font-weight: bold;' title='Heading (H2)'>H2</a>
+                </div>
+
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<h3>");' style='font-weight: bold;' title='Sub Heading (H3)'>H3</a>
+                </div>
+
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<h4>");' style='font-weight: bold;' title='Minor Heading (H4)'>H4</a>
+                </div>
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<h5>");' style='font-weight: bold;' title='Small Heading (H5)'>H5</a>
+                </div>
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<h6>");' style='font-weight: bold;' title='Very Small Heading (H6)'>H6</a>
+                </div>
+                <div class='icon-style focusable' tabindex='0'>
+                    <a class='icon-click' href='javascript:void(0)' onclick='document.execCommand("formatBlock",false, "<p>");' style='font-weight: bold;' title='Paragraph'>P</a>
+                </div>
+
+                <div class='icon-style' tabindex='0'>
+                </div>
+            </div>
+          <hr/>
+            <h4 class='h4 text-center'>Our Websites</h4>
+            <hr/>
+            <ul>
+                <a class='exLink' href='https://oklesson.blogspot.com/' rel='dofollow'><li>Our Blog</li></a>
+                <a class='exLink' href='https://wordcounteroklesson.blogspot.com/' rel='dofollow'><li>Word Counter</li></a>
+                <a class='exLink' href='https://meta-tag-generator-oklesson.blogspot.com/' rel='dofollow'><li>Meta Tag Generator</li></a>
+                <a class='exLink' href='https://strongpasswordmaker.blogspot.com/' rel='dofollow'><li>Random Password Generator</li></a>
+            </ul>
+          <hr/>
+          <a class='d-block exLink' href='https://oklesson.blogspot.com/p/the-quiz-builder-httpsthequizbuilderblo.html' rel='dofollow'>Report a Issue Or Suggestion.....</a>
+        </div>
+        <!-- Sidebar End Here -->
+
+        <div class='content'>
+            <div class='mytabs'>
+                <button class='tab_btn' id='btn1' onclick='switchTab(0)'>Editor Mode</button>
+                <button class='defaultBtn' id='btn2' onclick='switchTab(1)'>Code Mode</button>
+                <a class='icon-strip Mob-res' href='javascript:void(0)' onclick='document.execCommand("undo",false, null);' style='font-weight: bold;'><i class='fa fa-undo'></i></a>
+                <a class='icon-strip Mob-res' href='javascript:void(0)' onclick='document.execCommand("redo",false, null);' style='font-weight: bold;'><i class='fa fa-redo'></i></a>
+            </div>
+            <div style='font-size: 1rem;'>
+                <div contenteditable='true' data-text='Write Article or Build Quiz' id='editor1' onkeyup='setCode()'>
+                </div>
+            </div>
+            <textarea id='codeArea' readonly='true' style='display: none;'></textarea>
+            <div class='mt-4 bg-light p-3' id='contentArea'>
+                <div class='mt-1' style='height: 500px; background: whitesmoke; overflow-y: scroll;'>
+                    <h2 class='h2 text-center' id='intro'>What is TheQuizBuilder ?</h2>
+                    <p>
+                        TheQuizBuilder is a simple text editor. In which you can edit, modify and customize the text. You must be wondering why it is named TheQuizBuilder. Its name is TheQuizBuilder because, along with editing the text in it, you can also create a simple quiz in it. If you want to see how the quiz appears, then click here for that. It is very easy to use this offline text editor. This text editor is for those who are running their website on blogger. Those who use Blogger&#39;s text editor will know that writing content in Blogger text editor is a bit difficult. Sometimes a default font is applied in it automatically, then sometimes the code becomes very duplicate. To overcome this problem, I have created this text editor. You can use this text editor to write content, or you can also use it as a QuizBuilder.
+                        </p>
+
+<h2 class='h2 text-center' id='guide'>How to Use TheQuizBuilder?</h2>
+<p>
+It is very easy to use this Quizbuilder. In this you get all the basic features. Which are in every text editor. To use it, first you write content in editor mode. After that select some text. And run any operation from the left sidebar. All the operations given in the left sidebar, all those operations will work only when you select any text. If you want to run any operation from rightSidebar, then you do not need to select any text.
+</p>
+
+<h2 class='h2 text-center' id='createQuiz'>How to Create Quiz in TheQuizBuilder ?</h2>
+<p>
+If you want to make Quiz using TheQuizBuilder. So first write some content about the quiz. Like on which topic you are making a quiz, who can attend this quiz, and how many questions are there in it.</p>
+<br/>
+ <a class='d-block exLink' href='https://oklesson.blogspot.com/2021/07/java-basic-quiz-java-quiz-for.html' target='_blank'>--&gt; See Quiz, Made with TheQuizBuilder &lt;--</a>     <br/>           
+ <p>
+After doing this, you click on the Add Question button. Now a pop up box will appear in front of you, if you want to add only true false question, then click on the checkbox given in the pop up box. By doing this 2 fields of the form will be disabled. In this quizbuilder, the question is placed inside the &lt; h3 &gt; tag, and the options are placed inside the &lt; p &gt; tag. Now write the question to add the question, and also write all the options with it. After doing this, you have to tell in the last field which of your option is correct, and if you want, you can also write an explanation in it. After all the fields are filled, click on the Add question button. Your question will be added to the editor. Similarly, you can add many questions, there is no limit to it.
+</p>
+
+<h2 class='h2 text-center' id='addQuiz'>How To Add Quiz In Blogger Post ?</h2>
+<p>
+If you have created a quiz, and you want to add it to blogger, then first you have to click on the Copy Code button given in the right sidebar of the TheQuizBuilder. After that you have to login to your blogger account, and create a new post, after that you have to open the html editor, and paste the code. Now you can see your quiz by coming in compose mode. Now publish the post.</p>
+  
+<br/><br/><p>
+Now when you will open the post, you will see that your buttons are not looking very attractive, so to make the buttons attractive, paste the below CSS code in your main CSS skin in the last. Keep in mind that you should not modify the name of the selector, you can change its colors, styling, border, but not the selector.</p>
+<div style='min-height: 50px;padding: 25px; background: lightgray;'>
+    .Quiz-Button-Style { <br/>
+        font-size: 16px; <br/>
+        border-radius: 8px; <br/>
+        box-shadow: 2px 2px 5px black; <br/>
+        background: white; <br/>
+        border: 2px solid #b40ff0;<br/> 
+        padding: 5px 8px; <br/>
+        transition: all 0.4s; <br/>
+    } <br/><br/>
+    .Quiz-Button-Style:hover { <br/>
+        background: #ba41e6; color: white; <br/>
+    }
+</div>
+
+<h2 class='h2 text-center' id='feature'>What is the features of TheQuizBuilder ?</h2>
+<p>
+There are some such features in this quizbuilder, which will be of great use to you. Some of these features are given below.
+</p>
+<p><b>Copy Formatted Text:</b> If the way you have written the text, whatever styling you have applied to it, and you want, whenever you copy the content, its styling will also be copied along with it. So you can use it.
+</p>
+
+<p>
+<b>No Duplicate Code:</b> If you want to copy the code after writing the content. So for this I have tried my best, that the code should not be duplicated, and useless code should not be generated.
+</p>
+
+<p>
+<b>Copy Plain Text:</b> If you want to copy only the text, and you do not have to copy its formatting. Then this feature can also come in handy for you.
+</p>
+<p>
+<b>Insert Link:</b> If you are writing any content, and you have to do internal and external linking in the content. So the insert link feature is going to come in handy for you.
+</p>
+<hr/>
+<p>
+If you want to suggest any feature to us, and you think that if this feature was in TheQuizBuilder then the work would have been easier, you can suggest us the features to make this editor even more powerfull and easy.
+</p>
+Always Welcomes your Suggestion or Query .
+<br/>
+                  <h5 class='h5'>Last Update : 15/08/2021</h5><br/><br/>
+                  <p>This Website is Fully Tested On Chrome Browser(<b>Version 92.0.4515.159</b>) and Firefox Browser(<b>Version 91.0.1</b>). It is Recommended to use latest Browser.</p>
+       
+          </div>
+                </div>
+
+            
+            <div class='container p-2 bg-danger'>
+                <footer class='text-center text-white' style='font-weight: bold;font-size: 20px;'>Copyright &amp;copy; All Right Reserved -- Version 1.0.0</footer>
+            </div>
+        </div>
+
+<!-- Content & Editor end Here -->
+
+
+<!-- RightSidebar Start Here -->
+        <div class='right' id='rightSidebar'>
+            <div class='d-grid gap-2'>
+                <button class='btn btn-primary' data-bs-target='#exampleModal' data-bs-toggle='modal' style='width:215px;' title='Make A Complete Set Of MCQs'>
+                    Add Question
+                    <button class='btn btn-success mt-2' onclick='CopyCode()' style='width:215px;' title='Copy Complete Code'>CopyCode</button>
+                    </button>
+                    <button class='btn btn-info mt-2' onclick='CopyText()' style='width:215px;'>Copy Plain Text</button> 
+                        <button class='btn btn-success mt-2' onclick='CopyFormattedText()' style='width:215px;'>Copy Formatted Text</button>
+            </div>
+            <hr/>
+            <a class='h4 d-block text-center' href='#home'>Explore</a>
+            <hr/>
+            <ul>
+            <li><a class='d-block exLink' href='#intro'>What is TheQuizBuilder ?</a></li>
+            <li><a class='d-block exLink' href='#guide'>How to Use TheQuizBuilder ?</a></li>
+            <li><a class='d-block exLink' href='#createQuiz'>How to Create Quiz in TheQuizBuilder ?</a></li>
+            <li><a class='d-block exLink' href='#addQuiz'>How to Add Quiz in Blogger Post ?</a></li>
+            <li><a class='d-block exLink' href='#feature'>What is the Feature of TheQuizBuilder ?</a></li>
+            <li><a class='d-block exLink' href='https://oklesson.blogspot.com/p/code-index.html'>Get Code of Different Styles</a></li></ul>
+        </div>
+    </div>
+    <!-- rightSidebar end here -->
+
+    <!-- Modal for Create Quiz -->
+    <div aria-hidden='true' aria-labelledby='exampleModalLabel' class='modal fade ' id='exampleModal' tabindex='-1'>
+        <div class='modal-dialog modal-dialog-centered'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h3 class='modal-title' id='exampleModalLabel'>Create Quiz</h3>
+                </div>
+                <div class='modal-body'>
+                    <form>
+                        <label class='fs-4' for='Question'>Write Question :</label>
+                        <input id='twoOption' onchange='trueFalse()' style='position: absolute; right: 92px;top: 35px;' type='checkbox'/>
+                        <label class='fs-6' for='twoOption' style='position: absolute; right: 10px;top:30px;'>True/False:</label>
+                        <input class='form-control form-control-lg options' id='Question' type='text'/><br/>
+                        <div class='row'>
+                            <div class='col-1'><label class='fs-5' for='OptionA'>A)</label></div>
+                            <div class='col-11'><input class='form-control options' id='OptionA' type='text'/></div>
+                        </div>
+
+                        <div class='row mt-2'>
+                            <div class='col-1'><label class='fs-5' for='OptionB'>B)</label></div>
+                            <div class='col-11'><input class='form-control options' id='OptionB' type='text'/></div>
+                        </div>
+
+                        <div class='row mt-2'>
+                            <div class='col-1'><label class='fs-5' for='OptionC'>C)</label></div>
+                            <div class='col-11'><input class='form-control options' id='OptionC' type='text'/></div>
+                        </div>
+
+                        <div class='row mt-2'>
+                            <div class='col-1'><label class='fs-5' for='OptionD'>D)</label></div>
+                            <div class='col-11'><input class='form-control options' id='OptionD' type='text'/></div>
+                        </div>
+                    </form><br/>
+                    <span class=' fs-6 text-danger' id='ErrorMsg'></span>
+                    <label class='fs-6 d-block' for='Question'>Correct Option : Write like this <span class='text-success'>Option (Your Value) and Some Explanation</span></label>
+                    <input class='form-control ' id='CorrectOption' type='text' value='Option (A)'/>
+                </div>
+                <div class='modal-footer'>
+                    <button class='btn btn-secondary' data-bs-dismiss='modal' type='button'>Finish</button>
+                    <button class='btn btn-primary' id='addQuestionBtn' onclick='addQuestion()'>Add Question</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+
+    <div id='customAlert'>
+        <p>Hurrah ! Copied........</p>
+    </div>
+    <!-- back to top -->
+    <div class='back-to-top' onclick='backToTop()' style='color:white; font-size:30px;cursor:pointer; padding:0px 18px;width: 50px; height: 50px; border-radius: 50px; background: #6610f2;position: fixed; bottom: 20px; right: 50px; box-shadow: 2px 1px 9px black;' title='Back To Top'>&#8593;</div>
+    <!-- end back to top -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="script/app.js"></script>
+</body>
+
+</html>

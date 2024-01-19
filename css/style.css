@@ -1,0 +1,316 @@
+* {
+	margin: 0;
+	scroll-behavior: smooth;
+	font-size: inherit;
+	font-family: unset;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(223, 158, 39);
+	font-weight: bolder;
+}
+
+body {
+	background: rgb(128, 128, 128);
+	overflow-y: hidden;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+.left,
+.right {
+	width: 15rem;
+	height: 90vh;
+	top: 4.5rem;
+	box-sizing: border-box;
+	transition: all 0.4s;
+	background: white;
+	padding: 15px;
+	border-radius: 8px;
+	overflow-y: scroll;
+}
+
+.right {
+	overflow-x: hidden;
+}
+
+.left {
+	position: fixed;
+	left: 0;
+	box-shadow: 2px 4px 11px 4px black;
+}
+
+.right {
+	right: 0;
+	position: fixed;
+	box-shadow: 6px 10px 15px 9px black;
+}
+
+.content {
+	width: calc(100% - 15rem);
+	margin: 4rem 16.5rem 0 16.5rem;
+	transition: all 0.4s;
+	overflow-y: scroll;
+}
+
+.leftEnable {
+	width: 15rem;
+	transition: all ease 0.4s;
+	opacity: 2;
+}
+
+.leftDisable {
+	width: 0rem;
+	opacity: 0;
+	transition: all 0.4s;
+}
+
+.rightEnable {
+	width: 15rem;
+	opacity: 2;
+	transition: all 0.4s;
+}
+
+.rightDisable {
+	width: 0rem;
+	opacity: 0;
+	transition: all 0.4s;
+}
+
+.mytabs {
+	width: 100%;
+	height: 35px;
+	margin-top: 8px;
+}
+
+#editor1,
+#codeArea {
+	width: 100%;
+	height: 84vh;
+	background: white;
+	padding: 12px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	outline: none;
+	border: 1px solid white;
+	font-family: unset;
+}
+
+button.tab_btn {
+	height: 35px;
+	width: 120px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background: white;
+	outline: white;
+	color: red;
+	border: 1px solid white;
+	transition: all ease 0.5s;
+}
+
+button.tab_btn:focus {
+	outline: white;
+}
+
+.defaultBtn {
+	height: 35px;
+	width: 120px;
+	background: rgb(245, 245, 172);
+	border-radius: 5px;
+	outline: rgb(245, 245, 172);
+	cursor: pointer;
+	border: 1px solid rgb(245, 245, 172);
+}
+
+#headingOption {
+	height: 35px;
+	outline: none;
+	cursor: pointer;
+}
+
+#headingOption option {
+	font-size: 20px;
+}
+
+#headingOption option:checked {
+	color: red;
+	font-weight: bold;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	top: 0px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "
+	"
+	;
+	height: 22px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+@media (max-width:740px) {
+	.switch {
+		width: 46px;
+		height: 25px;
+	}
+
+	.slider:before {
+		height: 18px;
+		width: 22px;
+	}
+
+	input:checked+.slider:before {
+		-webkit-transform: translateX(17px);
+		-ms-transform: translateX(17px);
+		transform: translateX(17px);
+	}
+}
+
+#customAlert {
+	width: 20rem;
+	height: 4rem;
+	background: linear-gradient(to right, #f34481, #c54ff0);
+	border-radius: 8px;
+	padding: 12px 0 0 20px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	transition: all ease 1s;
+	opacity: 0;
+}
+
+#customAlert p {
+	font-size: 30px;
+	color: white;
+	font-family: Cambria, serif;
+}
+
+#contentArea p,
+span {
+	font-family: '
+	Poppins'
+	,
+	sans-serif;
+	text-align: justify;
+	line-height: 35px;
+}
+
+.Quiz-Button-Style {
+	font-size: 16px;
+	border-radius: 8px;
+	box-shadow: 2px 2px 5px black;
+	background: white;
+	border: 2px solid #b40ff0;
+	padding: 5px 8px;
+	transition: all 0.4s;
+}
+
+.Quiz-Button-Style:hover {
+	background: #ba41e6;
+	color: white;
+}
+
+.icon-style {
+	font-size: 20px;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	border-radius: 50px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
+	cursor: pointer;
+}
+
+.icon-click {
+	color: #546e7a;
+}
+
+.icon-strip {
+	font-size: 20px;
+	margin-left: 20px;
+	color: white;
+}
+
+.abc {
+	background: #ffc081;
+}
+
+.focusable:focus-within {
+	background: #ffc081;
+}
+
+.exLink {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.exLink:hover {
+	text-decoration: underline;
+}
+
+.back-to-top:hover {
+	transition: all ease 0.7s;
+	transform: rotate(360deg);
+}
